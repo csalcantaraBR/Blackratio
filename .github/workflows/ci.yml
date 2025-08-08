@@ -38,49 +38,49 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Clean and install dependencies
-      run: |
-        rm -f pnpm-lock.yaml
-        rm -rf node_modules apps/*/node_modules
-        pnpm install --network-timeout=300000
-      env:
-        NODE_OPTIONS: "--max-old-space-size=4096"
+      - name: Clean and install dependencies
+        run: |
+          rm -f pnpm-lock.yaml
+          rm -rf node_modules apps/*/node_modules
+          pnpm install --fetch-timeout=300000
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Run backend tests
-      run: |
-        cd apps/api
-        npm test
-      env:
-        CI: true
-        NODE_OPTIONS: "--max-old-space-size=4096"
+      - name: Run backend tests
+        run: |
+          cd apps/api
+          npm test
+        env:
+          CI: true
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Run frontend tests
-      run: |
-        cd apps/web
-        npm test
-      env:
-        CI: true
-        NODE_OPTIONS: "--max-old-space-size=4096"
+      - name: Run frontend tests
+        run: |
+          cd apps/web
+          npm test
+        env:
+          CI: true
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Build backend
-      run: |
-        cd apps/api
-        npm run build
-      env:
-        NODE_OPTIONS: "--max-old-space-size=4096"
+      - name: Build backend
+        run: |
+          cd apps/api
+          npm run build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Build frontend
-      run: |
-        cd apps/web
-        npm run build
-      env:
-        NODE_OPTIONS: "--max-old-space-size=4096"
+      - name: Build frontend
+        run: |
+          cd apps/web
+          npm run build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: test-results
-        path: |
-          apps/api/coverage/
-          apps/web/coverage/
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            apps/api/coverage/
+            apps/web/coverage/
