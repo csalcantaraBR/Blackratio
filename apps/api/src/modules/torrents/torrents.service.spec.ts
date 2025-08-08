@@ -114,10 +114,10 @@ describe('TorrentsService', () => {
       expect(prisma.torrent.findMany).toHaveBeenCalledWith(
         expect.objectContaining({
           where: expect.objectContaining({
-            OR: [
-              { name: { contains: 'Matrix', mode: 'insensitive' } },
-              { tags: { contains: 'Matrix', mode: 'insensitive' } },
-            ],
+            name: { contains: 'Matrix', mode: 'insensitive' },
+          }),
+          include: expect.objectContaining({
+            uploader: expect.any(Object),
           }),
         })
       );
@@ -149,6 +149,9 @@ describe('TorrentsService', () => {
       expect(result).toEqual(mockTorrent);
       expect(prisma.torrent.findUnique).toHaveBeenCalledWith({
         where: { id: '1' },
+        include: expect.objectContaining({
+          uploader: expect.any(Object),
+        }),
       });
     });
 
