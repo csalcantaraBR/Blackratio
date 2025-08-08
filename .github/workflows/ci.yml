@@ -83,6 +83,11 @@ jobs:
       env:
         NODE_OPTIONS: "--max-old-space-size=4096"
 
+    - name: Generate Test Report
+      run: npm run test:report
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
+
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
@@ -91,3 +96,4 @@ jobs:
         path: |
           apps/api/coverage/
           apps/web/coverage/
+          test-report.json

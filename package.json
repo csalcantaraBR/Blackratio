@@ -15,6 +15,8 @@
     "test:watch": "turbo run test:watch",
     "test:cov": "turbo run test:cov",
     "test:ci": "turbo run test:ci",
+    "test:report": "node scripts/test-report.js",
+    "test:full": "turbo run test && npm run test:report",
     "clean": "turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "type-check": "turbo run type-check",

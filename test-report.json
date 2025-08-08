@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-08-08T23:16:32.831Z",
+  "projectName": "BlackRatio - Private Tracker",
+  "summary": {
+    "backend": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "coverage": null
+    },
+    "frontend": {
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "coverage": null
+    }
+  },
+  "testDetails": {
+    "backend": [
+      {
+        "file": "apps/api/src/modules/auth/auth.service.spec.ts",
+        "tests": 5,
+        "exists": true
+      },
+      {
+        "file": "apps/api/src/modules/torrents/torrents.service.spec.ts",
+        "tests": 6,
+        "exists": true
+      },
+      {
+        "file": "apps/api/src/test/app.test.ts",
+        "tests": 2,
+        "exists": true
+      }
+    ],
+    "frontend": [
+      {
+        "file": "apps/web/src/lib/utils.test.ts",
+        "tests": 9,
+        "exists": true
+      },
+      {
+        "file": "apps/web/src/test/app.test.tsx",
+        "tests": 2,
+        "exists": true
+      }
+    ]
+  },
+  "applicationBehavior": {
+    "authentication": [
+      "✅ Validação de credenciais inválidas (email/senha)",
+      "✅ Registro com código de convite válido",
+      "✅ Rejeição de códigos de convite inválidos",
+      "✅ Criação de usuário com hash de senha seguro",
+      "✅ Geração de tokens JWT para autenticação",
+      "✅ Validação de estrutura de dados do usuário"
+    ],
+    "torrents": [
+      "✅ Listagem paginada de torrents",
+      "✅ Busca e filtro por nome (case-insensitive)",
+      "✅ Recuperação de torrent individual por ID",
+      "✅ Validação de campos obrigatórios (size, hashes, flags)",
+      "✅ Inclusão de dados do uploader nas consultas",
+      "✅ Tratamento de erro para torrents inexistentes",
+      "✅ Validação de tipos de dados (BigInt para tamanho)"
+    ],
+    "utilities": [
+      "✅ Formatação de bytes (B, KB, MB, GB)",
+      "✅ Formatação de ratio com 2 casas decimais",
+      "✅ Cores dinâmicas baseadas na ratio do usuário",
+      "✅ Formatação de datas e horários",
+      "✅ Concatenação de classes CSS condicionais",
+      "✅ Tratamento de valores edge cases (0, null, undefined)"
+    ],
+    "integration": [
+      "✅ Inicialização correta dos módulos NestJS",
+      "✅ Mock adequado do PrismaService em testes",
+      "✅ Renderização básica de componentes React",
+      "✅ Configuração Jest para TypeScript e JSX",
+      "✅ Pipeline de CI/CD com Node.js 18 e pnpm"
+    ]
+  }
+}
