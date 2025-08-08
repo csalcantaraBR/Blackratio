@@ -41,24 +41,34 @@ describe('TorrentsService', () => {
     it('should return paginated torrents', async () => {
       const mockTorrents = [
         {
-          id: 1,
+          id: '1',
           name: 'Test Torrent 1',
-          size: 1024,
-          seeders: 10,
-          leechers: 5,
+          infoHashV1: 'hash1',
+          infoHashV2: null,
+          size: BigInt(1024),
+          isPrivate: true,
+          isFreeleech: false,
+          isVip: false,
+          is4k: false,
           tags: 'movie,hd',
-          uploaderId: 1,
+          uploaderId: '1',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
-          id: 2,
+          id: '2',
           name: 'Test Torrent 2',
-          size: 2048,
-          seeders: 15,
-          leechers: 3,
+          infoHashV1: 'hash2',
+          infoHashV2: null,
+          size: BigInt(2048),
+          isPrivate: true,
+          isFreeleech: false,
+          isVip: false,
+          is4k: false,
           tags: 'tv,4k',
-          uploaderId: 1,
+          uploaderId: '1',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
 
@@ -74,21 +84,25 @@ describe('TorrentsService', () => {
         total: mockCount,
         page: 1,
         limit: 10,
-        totalPages: 1,
       });
     });
 
     it('should filter torrents by query', async () => {
       const mockTorrents = [
         {
-          id: 1,
+          id: '1',
           name: 'Matrix Movie',
-          size: 1024,
-          seeders: 10,
-          leechers: 5,
+          infoHashV1: 'hash1',
+          infoHashV2: null,
+          size: BigInt(1024),
+          isPrivate: true,
+          isFreeleech: false,
+          isVip: false,
+          is4k: false,
           tags: 'movie,hd',
-          uploaderId: 1,
+          uploaderId: '1',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
 
@@ -113,14 +127,19 @@ describe('TorrentsService', () => {
   describe('findOne', () => {
     it('should return a single torrent', async () => {
       const mockTorrent = {
-        id: 1,
+        id: '1',
         name: 'Test Torrent',
-        size: 1024,
-        seeders: 10,
-        leechers: 5,
+        infoHashV1: 'hash1',
+        infoHashV2: null,
+        size: BigInt(1024),
+        isPrivate: true,
+        isFreeleech: false,
+        isVip: false,
+        is4k: false,
         tags: 'movie,hd',
-        uploaderId: 1,
+        uploaderId: '1',
         createdAt: new Date(),
+        updatedAt: new Date(),
       };
 
       jest.spyOn(prisma.torrent, 'findUnique').mockResolvedValue(mockTorrent);
