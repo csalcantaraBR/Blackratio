@@ -16,7 +16,7 @@ model User {
   username    String   @unique
   passwordHash String
   passkey     String   @unique
-  role        UserRole @default(USER)
+  role        String   @default("USER")
   uploaded    BigInt  @default(0)
   downloaded  BigInt  @default(0)
   createdAt   DateTime @default(now())
@@ -89,9 +89,4 @@ model Invite {
   @@map("invites")
 }
 
-enum UserRole {
-  USER
-  UPLOADER
-  MODERATOR
-  ADMIN
-}
+
