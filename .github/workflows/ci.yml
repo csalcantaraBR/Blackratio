@@ -46,6 +46,13 @@ jobs:
       env:
         NODE_OPTIONS: "--max-old-space-size=4096"
 
+    - name: Generate Prisma client
+      run: |
+        cd apps/api
+        npx prisma generate
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
+
     - name: Run backend tests
       run: |
         cd apps/api
