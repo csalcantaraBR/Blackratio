@@ -10,6 +10,8 @@ A modern private tracker built with Next.js 14 and NestJS, featuring a dark "und
 - **User Profiles**: Track ratio, upload/download stats, and snatch history
 - **Responsive Design**: Works on desktop and mobile devices
 - **Real-time Data**: React Query for efficient data fetching
+- **Comprehensive Testing**: Full test suite with Jest and Testing Library
+- **CI/CD Pipeline**: Automated testing and deployment with GitHub Actions
 
 ## 🏗️ Tech Stack
 
@@ -20,6 +22,7 @@ A modern private tracker built with Next.js 14 and NestJS, featuring a dark "und
 - **React Query** for data fetching
 - **Radix UI** for accessible components
 - **Lucide React** for icons
+- **Jest & Testing Library** for testing
 
 ### Backend
 - **NestJS** with TypeScript
@@ -27,11 +30,13 @@ A modern private tracker built with Next.js 14 and NestJS, featuring a dark "und
 - **JWT** authentication
 - **Argon2** password hashing
 - **Class-validator** for validation
+- **Jest** for unit and integration testing
 
 ### Infrastructure
 - **PostgreSQL** database
 - **Redis** (optional, for caching)
 - **Docker Compose** for development
+- **GitHub Actions** for CI/CD
 
 ## 🚀 Quick Start
 
@@ -55,11 +60,10 @@ docker compose up -d
 ### 3. Setup Database
 ```bash
 # Generate Prisma client
-cd apps/api
-pnpm prisma:generate
+pnpm db:generate
 
 # Push schema to database
-pnpm prisma:push
+pnpm db:push
 
 # Seed with sample data
 pnpm seed
@@ -72,7 +76,7 @@ pnpm dev
 
 # Or start individually:
 # API (port 3000)
-cd apps/api && pnpm dev
+cd apps/api && pnpm start:dev
 
 # Web (port 3001)
 cd apps/web && pnpm dev
@@ -82,6 +86,44 @@ cd apps/web && pnpm dev
 - **Frontend**: http://localhost:3001
 - **API**: http://localhost:3000/api
 - **Database**: localhost:5432
+
+## 🧪 Testing
+
+### Run All Tests
+```bash
+# Run all tests
+pnpm test
+
+# Run tests with coverage
+pnpm test:cov
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests for CI
+pnpm test:ci
+```
+
+### Backend Tests
+```bash
+cd apps/api
+pnpm test          # Run tests
+pnpm test:cov      # Run with coverage
+pnpm test:watch    # Watch mode
+```
+
+### Frontend Tests
+```bash
+cd apps/web
+pnpm test          # Run tests
+pnpm test:cov      # Run with coverage
+pnpm test:watch    # Watch mode
+```
+
+### Test Coverage
+- **Backend**: Unit tests for services, controllers, and utilities
+- **Frontend**: Component tests, utility function tests
+- **Coverage**: Aim for >80% code coverage
 
 ## 📋 Demo Credentials
 
@@ -133,6 +175,7 @@ BlackRatio/
 │       │   ├── lib/        # Shared utilities
 │       │   └── main.ts     # Application entry
 │       └── prisma/         # Database schema
+├── .github/workflows/      # GitHub Actions CI/CD
 ├── docker-compose.yml      # Development infrastructure
 ├── turbo.json             # Build system config
 └── package.json           # Root dependencies
@@ -164,12 +207,23 @@ BlackRatio/
 pnpm dev              # Start all services
 pnpm build           # Build all packages
 pnpm lint            # Lint all packages
+pnpm lint:fix        # Fix linting issues
 pnpm clean           # Clean all builds
 
+# Testing
+pnpm test            # Run all tests
+pnpm test:cov        # Run tests with coverage
+pnpm test:watch      # Run tests in watch mode
+pnpm test:ci         # Run tests for CI
+
 # Database
-pnpm db:push         # Push schema changes
 pnpm db:generate     # Generate Prisma client
+pnpm db:push         # Push schema changes
+pnpm db:migrate      # Run migrations
 pnpm seed            # Seed with sample data
+
+# Type Checking
+pnpm type-check      # Run TypeScript type checking
 ```
 
 ### Environment Variables
@@ -182,6 +236,26 @@ JWT_SECRET=your-secret-key
 # Database
 DATABASE_URL=postgresql://user:pass@localhost:5432/blackratio
 ```
+
+## 🚀 CI/CD Pipeline
+
+### GitHub Actions Workflow
+The project includes a comprehensive CI/CD pipeline that runs on every push and pull request:
+
+1. **Test Backend**: Runs NestJS tests with PostgreSQL
+2. **Test Frontend**: Runs Next.js tests with Jest
+3. **Lint Code**: ESLint and Prettier checks
+4. **Build Applications**: Builds both frontend and backend
+5. **Security Scan**: Trivy vulnerability scanner
+6. **Deploy Staging**: Automatic deployment to staging (main branch)
+
+### Pipeline Features
+- ✅ **Automated Testing**: Unit and integration tests
+- ✅ **Code Quality**: ESLint, Prettier, TypeScript checks
+- ✅ **Security Scanning**: Vulnerability detection
+- ✅ **Coverage Reports**: Code coverage tracking
+- ✅ **Build Verification**: Ensures applications build successfully
+- ✅ **Database Testing**: PostgreSQL integration tests
 
 ## 🖼️ Application Preview
 
@@ -205,8 +279,16 @@ You can test the application by running the development servers and accessing:
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+### Development Guidelines
+- ✅ Write tests for new features
+- ✅ Follow the existing code style
+- ✅ Update documentation as needed
+- ✅ Ensure TypeScript types are correct
+- ✅ Run linting before committing
 
 ## 📄 License
 
