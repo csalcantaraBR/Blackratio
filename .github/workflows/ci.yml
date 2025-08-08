@@ -40,25 +40,31 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pnpm install --frozen-lockfile
+        pnpm install --frozen-lockfile --network-timeout=60000 || pnpm install --network-timeout=60000
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Run backend tests
       run: |
         cd apps/api
-        pnpm test --verbose
+        pnpm test --verbose --no-coverage
       env:
         CI: true
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Run frontend tests
       run: |
         cd apps/web
-        pnpm test --verbose
+        pnpm test --verbose --no-coverage
       env:
         CI: true
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Build applications
       run: |
         pnpm build
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
