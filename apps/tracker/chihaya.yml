@@ -1,0 +1,10 @@
+version: 3
+storage: { name: memory }
+http:
+  announce: { addr: ":6969" }
+  scrape:   { addr: ":6969" }
+middleware:
+  - name: private_torrents
+  - name: client_whitelist
+    args:
+      whitelist: ["qB","-TR","-UT"]

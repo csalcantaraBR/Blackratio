@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackRatio - Design Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0B0B0B;
+            color: #F0F0F0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00FF88;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #B8C0CC;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background-color: #111315;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #22262A;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00FF88;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #B8C0CC;
+            font-size: 1rem;
+        }
+
+        .features-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #00FF88;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: #111315;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #22262A;
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #00FF88;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            color: #F0F0F0;
+        }
+
+        .feature-description {
+            color: #B8C0CC;
+            line-height: 1.6;
+        }
+
+        .recent-uploads {
+            margin-bottom: 4rem;
+        }
+
+        .uploads-container {
+            background-color: #111315;
+            border-radius: 8px;
+            border: 1px solid #22262A;
+            overflow: hidden;
+        }
+
+        .uploads-header {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #22262A;
+            background-color: #15181B;
+        }
+
+        .uploads-title {
+            color: #F0F0F0;
+            font-size: 1.1rem;
+        }
+
+        .upload-item {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #22262A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .upload-info {
+            flex: 1;
+        }
+
+        .upload-name {
+            color: #F0F0F0;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .upload-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #B8C0CC;
+        }
+
+        .upload-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .tag-freeleech {
+            background-color: #00FF88;
+            color: #0B0B0B;
+        }
+
+        .tag-vip {
+            background-color: #FFC857;
+            color: #0B0B0B;
+        }
+
+        .tag-regular {
+            background-color: #22262A;
+            color: #B8C0CC;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            background-color: #00FF88;
+            color: #0B0B0B;
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .footer {
+            background-color: #111315;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #22262A;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00FF88;
+        }
+
+        .footer-tagline {
+            color: #B8C0CC;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: #B8C0CC;
+        }
+
+        .footer-links a {
+            color: #B8C0CC;
+            text-decoration: none;
+        }
+
+        .footer-copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #B8C0CC;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 10V22L16 30L4 22V10L16 2Z" stroke="#00FF88" stroke-width="2" fill="none"/>
+                    <path d="M16 6L24 10V18L16 22L8 18V10L16 6Z" fill="#00FF88"/>
+                    <circle cx="16" cy="16" r="3" fill="#0B0B0B"/>
+                </svg>
+                BlackRatio
+            </div>
+            <p class="tagline">Where only invited members share.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">2,847</div>
+                <div class="stat-label">Active Torrents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">156</div>
+                <div class="stat-label">Online Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1.2 PB</div>
+                <div class="stat-label">Total Data</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section">
+            <h2 class="section-title">Why Choose BlackRatio?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Quality Content</h3>
+                    </div>
+                    <p class="feature-description">
+                        Curated selection of high-quality content with strict quality standards. 
+                        Every torrent is verified and properly tagged.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 3 15.9391 3 17V21" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                                <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Active Community</h3>
+                    </div>
+                    <p class="feature-description">
+                        Join a community of dedicated users who share and maintain high-quality content. 
+                        Help others while building your ratio.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                                <path d="M2 17L12 22L22 17" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                                <path d="M2 12L12 17L22 12" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Fast Downloads</h3>
+                    </div>
+                    <p class="feature-description">
+                        High-speed servers and dedicated seeders ensure fast download speeds. 
+                        Multiple trackers for redundancy and reliability.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#0B0B0B" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Exclusive Access</h3>
+                    </div>
+                    <p class="feature-description">
+                        Invite-only membership ensures quality and security. 
+                        Access to rare and exclusive content not available elsewhere.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Uploads -->
+        <div class="recent-uploads">
+            <h2 class="section-title">Recent Uploads</h2>
+            <div class="uploads-container">
+                <div class="uploads-header">
+                    <h3 class="uploads-title">Latest Torrents</h3>
+                </div>
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-name">The Matrix (1999) 4K HDR</div>
+                        <div class="upload-meta">
+                            <span>Size: 45.2 GB</span>
+                            <span>Seeders: <span style="color: #00FF88;">156</span></span>
+                            <span>Leechers: <span style="color: #FF5A5A;">23</span></span>
+                        </div>
+                    </div>
+                    <div class="upload-tags">
+                        <span class="tag tag-freeleech">4K</span>
+                        <span class="tag tag-freeleech">HDR</span>
+                        <span class="tag tag-freeleech">FREELEECH</span>
+                    </div>
+                </div>
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-name">Breaking Bad S01-S05 Complete</div>
+                        <div class="upload-meta">
+                            <span>Size: 89.7 GB</span>
+                            <span>Seeders: <span style="color: #00FF88;">89</span></span>
+                            <span>Leechers: <span style="color: #FF5A5A;">12</span></span>
+                        </div>
+                    </div>
+                    <div class="upload-tags">
+                        <span class="tag tag-vip">TV</span>
+                        <span class="tag tag-vip">Drama</span>
+                        <span class="tag tag-vip">VIP</span>
+                    </div>
+                </div>
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-name">Cyberpunk 2077 v2.0</div>
+                        <div class="upload-meta">
+                            <span>Size: 67.3 GB</span>
+                            <span>Seeders: <span style="color: #00FF88;">234</span></span>
+                            <span>Leechers: <span style="color: #FF5A5A;">45</span></span>
+                        </div>
+                    </div>
+                    <div class="upload-tags">
+                        <span class="tag tag-regular">Game</span>
+                        <span class="tag tag-regular">RPG</span>
+                        <span class="tag tag-regular">NEW</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-section">
+                <a href="#" class="cta-button">View All Torrents</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-logo">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 10V22L16 30L4 22V10L16 2Z" stroke="#00FF88" stroke-width="2" fill="none"/>
+                    <path d="M16 6L24 10V18L16 22L8 18V10L16 6Z" fill="#00FF88"/>
+                    <circle cx="16" cy="16" r="3" fill="#0B0B0B"/>
+                </svg>
+                <span class="footer-brand">BlackRatio</span>
+            </div>
+            <p class="footer-tagline">Where only invited members share.</p>
+            <div class="footer-links">
+                <a href="#">Rules</a>
+                <a href="#">Sign In</a>
+                <span>© 2024 BlackRatio. All rights reserved.</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
