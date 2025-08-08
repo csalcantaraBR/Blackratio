@@ -42,8 +42,8 @@ A modern private tracker built with Next.js 14 and NestJS, featuring a dark "und
 
 ### 1. Clone and Setup
 ```bash
-git clone <repository-url>
-cd BlackRatio
+git clone https://github.com/csalcantaraBR/blackratio.git
+cd blackratio
 pnpm install
 ```
 
