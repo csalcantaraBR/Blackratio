@@ -15,3 +15,12 @@ describe('String Test', () => {
     expect('Hello' + ' ' + 'World').toBe('Hello World');
   });
 });
+
+// Teste básico de array
+describe('Array Test', () => {
+  it('should handle array operations', () => {
+    const arr = [1, 2, 3];
+    expect(arr.length).toBe(3);
+    expect(arr[0]).toBe(1);
+  });
+});
