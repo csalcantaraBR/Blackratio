@@ -10,7 +10,6 @@ jobs:
   test:
     name: Test Applications
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
     - name: Checkout code
@@ -39,22 +38,18 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Remove lockfile if exists
+    - name: Clean and install dependencies
       run: |
         rm -f pnpm-lock.yaml
         rm -rf node_modules apps/*/node_modules
-
-    - name: Install dependencies
-      run: |
-        pnpm install --network-timeout=120000 --prefer-offline=false || echo "Install failed, but continuing..."
+        pnpm install --network-timeout=300000
       env:
         NODE_OPTIONS: "--max-old-space-size=4096"
-        CI: true
 
     - name: Run backend tests
       run: |
         cd apps/api
-        pnpm test --verbose --no-coverage || echo "Backend tests failed, but continuing..."
+        npm test
       env:
         CI: true
         NODE_OPTIONS: "--max-old-space-size=4096"
@@ -62,22 +57,24 @@ jobs:
     - name: Run frontend tests
       run: |
         cd apps/web
-        pnpm test --verbose --no-coverage || echo "Frontend tests failed, but continuing..."
+        npm test
       env:
         CI: true
         NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Build applications
+    - name: Build backend
       run: |
-        pnpm build || echo "Build failed, but continuing..."
+        cd apps/api
+        npm run build
       env:
         NODE_OPTIONS: "--max-old-space-size=4096"
 
-    - name: Always succeed
+    - name: Build frontend
       run: |
-        echo "✅ Pipeline completed successfully!"
-        echo "All tests and builds attempted."
-      continue-on-error: true
+        cd apps/web
+        npm run build
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Upload test results
       uses: actions/upload-artifact@v4

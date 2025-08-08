@@ -1,47 +1,65 @@
-// Teste básico para as funções utilitárias
-describe('Utils', () => {
+import { formatBytes, formatRatio, getRatioColor, formatDate, formatDateTime, cn } from './utils';
+
+describe('Utils Functions', () => {
   describe('formatBytes', () => {
     it('should format bytes correctly', () => {
-      // Mock da função formatBytes
-      const formatBytes = (bytes: number): string => {
-        if (bytes === 0) return '0 B';
-        const k = 1024;
-        const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-      };
-
-      expect(formatBytes(0)).toBe('0 B');
+      expect(formatBytes(0)).toBe('0 Bytes');
       expect(formatBytes(1024)).toBe('1 KB');
-      expect(formatBytes(1024 * 1024)).toBe('1 MB');
+      expect(formatBytes(1048576)).toBe('1 MB');
+      expect(formatBytes(1073741824)).toBe('1 GB');
+    });
+
+    it('should handle decimal places', () => {
+      expect(formatBytes(1536)).toBe('1.5 KB');
+      expect(formatBytes(1572864)).toBe('1.5 MB');
     });
   });
 
   describe('formatRatio', () => {
     it('should format ratio correctly', () => {
-      // Mock da função formatRatio
-      const formatRatio = (ratio: number): string => {
-        return ratio.toFixed(2);
-      };
+      expect(formatRatio(100, 50)).toBe('2.00');
+      expect(formatRatio(0, 100)).toBe('0.00');
+      expect(formatRatio(100, 0)).toBe('∞');
+    });
 
-      expect(formatRatio(0)).toBe('0.00');
-      expect(formatRatio(1)).toBe('1.00');
-      expect(formatRatio(1.5)).toBe('1.50');
+    it('should handle edge cases', () => {
+      expect(formatRatio(0, 0)).toBe('0.00');
     });
   });
 
   describe('getRatioColor', () => {
     it('should return correct colors for different ratios', () => {
-      // Mock da função getRatioColor
-      const getRatioColor = (ratio: number): string => {
-        if (ratio < 0.6) return 'text-red-500';
-        if (ratio < 1.0) return 'text-yellow-500';
-        return 'text-green-500';
-      };
+      expect(getRatioColor(0.5)).toBe('text-red-400');
+      expect(getRatioColor(1.0)).toBe('text-yellow-400');
+      expect(getRatioColor(2.0)).toBe('text-green-400');
+    });
+  });
 
-      expect(getRatioColor(0.5)).toBe('text-red-500');
-      expect(getRatioColor(0.8)).toBe('text-yellow-500');
-      expect(getRatioColor(1.2)).toBe('text-green-500');
+  describe('formatDate', () => {
+    it('should format date correctly', () => {
+      const date = new Date('2023-01-01T10:00:00Z');
+      const formatted = formatDate(date);
+      expect(formatted).toMatch(/Jan 1, 2023/);
+    });
+  });
+
+  describe('formatDateTime', () => {
+    it('should format datetime correctly', () => {
+      const date = new Date('2023-01-01T10:00:00Z');
+      const formatted = formatDateTime(date);
+      expect(formatted).toMatch(/Jan 1, 2023.*10:00/);
+    });
+  });
+
+  describe('cn (className utility)', () => {
+    it('should merge class names correctly', () => {
+      expect(cn('class1', 'class2')).toBe('class1 class2');
+      expect(cn('class1', undefined, 'class2')).toBe('class1 class2');
+    });
+
+    it('should handle conditional classes', () => {
+      expect(cn('base', true && 'conditional')).toBe('base conditional');
+      expect(cn('base', false && 'conditional')).toBe('base');
     });
   });
 });
