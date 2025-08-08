@@ -183,19 +183,22 @@ JWT_SECRET=your-secret-key
 DATABASE_URL=postgresql://user:pass@localhost:5432/blackratio
 ```
 
-## 📸 Screenshots
+## 🖼️ Application Preview
 
-### Home Page
-![Home Page](screenshots/home.png)
+### Pages Available
+- **Home Page**: Landing page with stats and recent uploads
+- **Torrents List**: Browse all torrents with filtering and search
+- **Search Page**: Advanced search with tags and categories
+- **Upload Form**: Form to upload new torrents
+- **User Profile**: User stats, ratio, and download history
+- **Torrent Details**: Detailed view of individual torrents
+- **Rules Page**: Community guidelines and policies
+- **Login/Register**: Authentication with invite codes
 
-### Torrents List
-![Torrents List](screenshots/torrents.png)
-
-### Upload Form
-![Upload Form](screenshots/upload.png)
-
-### User Profile
-![User Profile](screenshots/profile.png)
+### Demo Access
+You can test the application by running the development servers and accessing:
+- **Frontend**: http://localhost:3001
+- **API Documentation**: Available at http://localhost:3000/api
 
 ## 🤝 Contributing
 
