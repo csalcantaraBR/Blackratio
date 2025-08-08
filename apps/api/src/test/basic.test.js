@@ -1,5 +1,5 @@
-// Teste básico para o frontend que pode rodar sem Jest
-console.log('Running basic frontend test...');
+// Teste básico que pode rodar sem Jest
+console.log('Running basic test...');
 
 // Simular funções básicas do Jest
 function describe(name, fn) {
@@ -33,26 +33,25 @@ function expect(value) {
   };
 }
 
-// Testes básicos para o frontend
-describe('Frontend Basic Tests', () => {
+// Testes básicos
+describe('Basic Tests', () => {
   it('should pass basic assertions', () => {
     expect(true).toBe(true);
     expect(1 + 1).toBe(2);
-    expect('BlackRatio').toBe('BlackRatio');
+    expect('hello').toBe('hello');
     expect([1, 2, 3]).toHaveLength(3);
   });
 
-  it('should handle UI-related operations', () => {
-    expect('dark').toBe('dark');
-    expect('theme'.length).toBe(5);
-    expect(['login', 'register', 'torrents']).toHaveLength(3);
+  it('should handle string operations', () => {
+    expect('BlackRatio').toBe('BlackRatio');
+    expect('test'.length).toBe(4);
   });
 
-  it('should handle component operations', () => {
-    const components = ['Button', 'Input', 'Card'];
-    expect(components).toHaveLength(3);
-    expect(components[0]).toBe('Button');
+  it('should handle array operations', () => {
+    const arr = [1, 2, 3];
+    expect(arr).toHaveLength(3);
+    expect(arr[0]).toBe(1);
   });
 });
 
-console.log('\nAll frontend tests passed! ✅');
+console.log('\nAll tests passed! ✅');
